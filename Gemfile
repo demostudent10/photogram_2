@@ -67,3 +67,5 @@ group :test do
 end
 gem 'doorkeeper', '~> 5.4.0'
 gem "rollbar"
+gem "kaminari"
+gem "bootstrap4-kaminari-views"
