@@ -20,6 +20,8 @@ RSpec.describe User, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:timeline) }
+
     end
 
     describe "Validations" do
