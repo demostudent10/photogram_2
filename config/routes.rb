@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   scope path: ApplicationResource.endpoint_namespace, defaults: { format: :jsonapi } do
     scope module: 'api/v1', as: 'api' do
       resources :friend_requests
