@@ -4,6 +4,8 @@ RSpec.describe Vote, type: :model do
   
     describe "Direct Associations" do
 
+    it { should belong_to(:photo) }
+
     it { should belong_to(:user) }
 
     end
