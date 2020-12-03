@@ -42,7 +42,7 @@
 
     <%= f.label :commenter_id %>
     <!-- Input for commenter_id start -->
-    <%= f.number_field :commenter_id, class: commenter_class, placeholder: "Enter commenter" %>
+    <%= f.select :commenter_id, options_from_collection_for_select(User.all, :id, :to_s, @comment.commenter_id), {}, class: "form-control" %>
     <!-- Input for commenter_id end -->
     <% if commenter_was_invalid %>
       <% comment.errors.full_messages_for(:commenter).each do |message| %>
