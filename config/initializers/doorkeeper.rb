@@ -7,27 +7,19 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
+    current_user || redirect_to(root_path)
   end
+
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
   # file then you need to declare this block in order to restrict access to the web interface for
   # adding oauth authorized applications. In other case it will return 403 Forbidden response
   # every time somebody will try to access the admin web interface.
   #
-  # admin_authenticator do
-  #   # Put your admin authentication logic here.
-  #   # Example implementation:
-  #
-  #   if current_user
-  #     head :forbidden unless current_user.admin?
-  #   else
-  #     redirect_to sign_in_url
-  #   end
-  # end
+  admin_authenticator do
+    current_user || redirect_to(root_path)
+  end
+
 
   # You can use your own model classes if you need to extend (or even override) default
   # Doorkeeper models such as `Application`, `AccessToken` and `AccessGrant.
@@ -94,6 +86,7 @@ Doorkeeper.configure do
   # If you want to disable expiration, set this to `nil`.
   #
   # access_token_expires_in 2.hours
+  access_token_expires_in nil
 
   # Assign custom TTL for access tokens. Will be used instead of access_token_expires_in
   # option if defined. In case the block returns `nil` value Doorkeeper fallbacks to
@@ -227,7 +220,7 @@ Doorkeeper.configure do
   # For more information go to
   # https://doorkeeper.gitbook.io/guides/ruby-on-rails/scopes
   #
-  # default_scopes  :public
+  default_scopes  :public
   # optional_scopes :write, :update
 
   # Allows to restrict only certain scopes for grant_type.
