@@ -5,6 +5,8 @@ class FriendRequest < ApplicationRecord
 
   # Validations
 
+  validates :recipient_id, :uniqueness => { :scope => [:sender_id], :message => "already requested" }
+
   validates :recipient_id, :presence => true
 
   validates :sender_id, :presence => true
