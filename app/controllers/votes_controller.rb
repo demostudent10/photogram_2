@@ -5,7 +5,7 @@ class VotesController < ApplicationController
 
   # GET /votes
   def index
-    @votes = Vote.all
+    @votes = current_user.likes.page(params[:page]).per(10)
   end
 
   # GET /votes/1
