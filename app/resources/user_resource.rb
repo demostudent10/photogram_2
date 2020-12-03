@@ -12,6 +12,9 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :likes,
+             resource: VoteResource
+
   has_many   :photos,
              foreign_key: :owner_id
 
