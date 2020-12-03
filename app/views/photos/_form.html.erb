@@ -120,7 +120,7 @@
 
     <%= f.label :status %>
     <!-- Input for status start -->
-    <%= f.number_field :status, class: status_class, placeholder: "Enter status" %>
+    <%= f.select :status, options_for_select(Photo.statuses.keys), {}, class: "form-control" %>
     <!-- Input for status end -->
     <% if status_was_invalid %>
       <% photo.errors.full_messages_for(:status).each do |message| %>

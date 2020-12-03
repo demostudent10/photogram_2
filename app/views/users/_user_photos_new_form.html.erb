@@ -39,7 +39,7 @@
   <div class="form-group">
     <%= f.label :status %>
     <!-- Input for status start -->
-    <%= f.text_field :status, class: "form-control" %>
+    <%= f.select :status, options_for_select(Photo.statuses.keys), {}, class: "form-control" %>
     <!-- Input for status end -->
   </div>
   <!-- Label and input for status end -->
