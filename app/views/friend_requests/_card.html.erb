@@ -29,7 +29,7 @@
 
       <!-- Edit link friend_request start -->
       <div class="col">
-        <% if current_user == @friend_request.sender %>
+        <% if current_user == @friend_request.accepted_recipient %>
           <%= link_to edit_friend_request_url(friend_request), class: "btn btn-block btn-sm btn-outline-secondary" do %>
             <i class="fas fa-edit"></i>
           <% end %>
@@ -39,7 +39,7 @@
 
       <!-- Delete link friend_request start -->
       <div class="col">
-        <% if current_user == @friend_request.sender %>
+        <% if current_user == @friend_request.accepted_recipient %>
           <%= link_to friend_request, method: :delete, data: { confirm: "Do you really want to delete this friend_request?" }, class: "btn btn-block btn-outline-secondary" do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>

@@ -1,4 +1,6 @@
 class FriendRequestsController < ApplicationController
+  before_action :current_user_must_be_friend_request_accepted_recipient, only: [:edit, :update, :destroy] 
+
   before_action :current_user_must_be_friend_request_sender, only: [:edit, :update, :destroy] 
 
   before_action :set_friend_request, only: [:show, :edit, :update, :destroy]
@@ -59,6 +61,14 @@ class FriendRequestsController < ApplicationController
 
 
   private
+
+  def current_user_must_be_friend_request_accepted_recipient
+    set_friend_request
+    unless current_user == @friend_request.accepted_recipient
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
 
   def current_user_must_be_friend_request_sender
     set_friend_request
