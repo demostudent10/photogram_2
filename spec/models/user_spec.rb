@@ -20,6 +20,8 @@ RSpec.describe User, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:liked_photos) }
+
     it { should have_many(:commented_photos) }
 
     it { should have_many(:timeline) }
