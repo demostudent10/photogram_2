@@ -1,0 +1,61 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    User #<%= user.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Username</dt>
+      <!-- Display username start -->
+      <dd><%= user.username %></dd>
+      <!-- Display username end -->
+
+      <dt>Avatar</dt>
+      <!-- Display avatar start -->
+      <dd><%= user.avatar %></dd>
+      <!-- Display avatar end -->
+
+      <dt>First name</dt>
+      <!-- Display first_name start -->
+      <dd><%= user.first_name %></dd>
+      <!-- Display first_name end -->
+
+      <dt>Last name</dt>
+      <!-- Display last_name start -->
+      <dd><%= user.last_name %></dd>
+      <!-- Display last_name end -->
+
+      <dt>Bio</dt>
+      <!-- Display bio start -->
+      <dd><%= user.bio %></dd>
+      <!-- Display bio end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back user, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link user start -->
+      <div class="col">
+        <%= link_to edit_user_url(user), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link user end -->
+
+      <!-- Delete link user start -->
+      <div class="col">
+        <%= link_to user, method: :delete, data: { confirm: "Do you really want to delete this user?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link user end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(user.updated_at) %> ago
+  </div>
+</div>
