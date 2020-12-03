@@ -7,30 +7,9 @@
   <!-- Input for "sender_id" end -->
   <!-- Label and input for sender_id end -->
   <!-- Label and input for recipient_id start -->
-  <div class="form-group">
-    <% recipient_class = "form-control" %>
-    <% recipient_was_invalid = friend_request.errors.include?(:recipient) %>
-
-    <% if was_validated %>
-      <% if recipient_was_invalid %>
-        <% recipient_class << " is-invalid" %>
-      <% else %>
-        <% recipient_class << " is-valid" %>
-      <% end %>
-    <% end %>
-
-    <%= f.label :recipient_id %>
-    <!-- Input for recipient_id start -->
-    <%= f.select :recipient_id, options_from_collection_for_select(User.all, :id, :to_s, @friend_request.recipient_id), {}, class: "form-control" %>
-    <!-- Input for recipient_id end -->
-    <% if recipient_was_invalid %>
-      <% friend_request.errors.full_messages_for(:recipient).each do |message| %>
-        <div class="invalid-feedback d-flex">
-          <%= message %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <!-- Input for "recipient_id" start -->
+  <%= f.hidden_field :recipient_id, value: current_user.id %>
+  <!-- Input for "recipient_id" end -->
   <!-- Label and input for recipient_id end -->
   <!-- Label and input for status start -->
   <div class="form-group">
