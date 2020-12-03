@@ -16,7 +16,7 @@
 
     <%= f.label :sender_id %>
     <!-- Input for sender_id start -->
-    <%= f.number_field :sender_id, class: sender_class, placeholder: "Enter sender" %>
+    <%= f.select :sender_id, options_from_collection_for_select(User.all, :id, :to_s, @friend_request.sender_id), {}, class: "form-control" %>
     <!-- Input for sender_id end -->
     <% if sender_was_invalid %>
       <% friend_request.errors.full_messages_for(:sender).each do |message| %>
