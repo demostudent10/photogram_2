@@ -35,6 +35,22 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :follows, resource: UserResource do
+    assign_each do |user, users|
+      users.select do |u|
+        u.id.in?(user.follows.map(&:id))
+      end
+    end
+  end
+
+  has_many :followers, resource: UserResource do
+    assign_each do |user, users|
+      users.select do |u|
+        u.id.in?(user.followers.map(&:id))
+      end
+    end
+  end
+
   many_to_many :liked_photos,
                resource: PhotoResource
 
@@ -53,6 +69,18 @@ class UserResource < ApplicationResource
   filter :owner_id, :integer do
     eq do |scope, value|
       scope.eager_load(:timeline).where(:photos => {:owner_id => value})
+    end
+  end
+
+  filter :recipient_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:follows).where(:friend_requests => {:recipient_id => value})
+    end
+  end
+
+  filter :sender_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:followers).where(:friend_requests => {:sender_id => value})
     end
   end
 end
