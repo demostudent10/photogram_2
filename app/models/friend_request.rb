@@ -5,6 +5,8 @@ class FriendRequest < ApplicationRecord
 
   # Validations
 
+  validates :sender_id, :presence => true
+
   validates :status, :presence => true
 
   validates :status, :inclusion => { :in => [ "pending", "accepted", "declined" ]  }
