@@ -10,18 +10,14 @@
   <ul class="list-group list-group-flush">
     <% @user.accepted_friend_requests.each do |friend_request| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to friend_request.to_s, friend_request_path(friend_request) %>
-        <!-- Show link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="user_accepted_friend_requests_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "users/user_accepted_friend_requests_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 

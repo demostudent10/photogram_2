@@ -1,17 +1,8 @@
 <% was_validated = friend_request.errors.any? %>
 
 <%= form_with(model: friend_request, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for sender_id start -->
-  <!-- Input for "sender_id" start -->
   <%= f.hidden_field :sender_id, value: current_user.id %>
-  <!-- Input for "sender_id" end -->
-  <!-- Label and input for sender_id end -->
-  <!-- Label and input for recipient_id start -->
-  <!-- Input for "recipient_id" start -->
   <%= f.hidden_field :recipient_id, value: current_user.id %>
-  <!-- Input for "recipient_id" end -->
-  <!-- Label and input for recipient_id end -->
-  <!-- Label and input for status start -->
   <div class="form-group">
     <% status_class = "form-control" %>
     <% status_was_invalid = friend_request.errors.include?(:status) %>
@@ -25,9 +16,7 @@
     <% end %>
 
     <%= f.label :status %>
-    <!-- Input for status start -->
     <%= f.text_field :status, class: status_class, placeholder: "Enter status" %>
-    <!-- Input for status end -->
     <% if status_was_invalid %>
       <% friend_request.errors.full_messages_for(:status).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -36,6 +25,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for status end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>
