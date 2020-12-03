@@ -7,7 +7,7 @@ class FriendRequestsController < ApplicationController
 
   # GET /friend_requests
   def index
-    @friend_requests = FriendRequest.all
+    @friend_requests = current_user.accepted_friend_requests.page(params[:page]).per(10)
   end
 
   # GET /friend_requests/1
