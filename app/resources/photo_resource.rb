@@ -34,10 +34,9 @@ class PhotoResource < ApplicationResource
     end
   end
 
-
   filter :sender_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:followers).where(:friend_requests => {:sender_id => value})
+      scope.eager_load(:followers).where(friend_requests: { sender_id: value })
     end
   end
 end

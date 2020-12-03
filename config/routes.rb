@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   use_doorkeeper
   scope path: ApplicationResource.endpoint_namespace, defaults: { format: :jsonapi } do
-    scope module: 'api/v1', as: 'api' do
+    scope module: "api/v1", as: "api" do
       get "/current_user" => "users#show"
 
       resources :friend_requests
@@ -13,14 +13,13 @@ Rails.application.routes.draw do
       resources :photos
 
       resources :users
-
     end
-    mount VandalUi::Engine, at: '/vandal'
+    mount VandalUi::Engine, at: "/vandal"
     # your routes go here
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root :to => "photos#index"
+  root to: "photos#index"
   resources :friend_requests
   resources :comments
   resources :votes

@@ -10,7 +10,6 @@ Doorkeeper.configure do
     current_user || redirect_to(root_path)
   end
 
-
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
   # file then you need to declare this block in order to restrict access to the web interface for
   # adding oauth authorized applications. In other case it will return 403 Forbidden response
@@ -19,7 +18,6 @@ Doorkeeper.configure do
   admin_authenticator do
     current_user || redirect_to(root_path)
   end
-
 
   # You can use your own model classes if you need to extend (or even override) default
   # Doorkeeper models such as `Application`, `AccessToken` and `AccessGrant.
@@ -220,7 +218,7 @@ Doorkeeper.configure do
   # For more information go to
   # https://doorkeeper.gitbook.io/guides/ruby-on-rails/scopes
   #
-  default_scopes  :public
+  default_scopes :public
   # optional_scopes :write, :update
 
   # Allows to restrict only certain scopes for grant_type.

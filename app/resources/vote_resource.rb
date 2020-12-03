@@ -12,5 +12,4 @@ class VoteResource < ApplicationResource
   belongs_to :user
 
   # Indirect associations
-
 end

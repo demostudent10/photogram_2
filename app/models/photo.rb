@@ -1,10 +1,10 @@
-require 'open-uri'
+require "open-uri"
 class Photo < ApplicationRecord
   before_validation :geocode_location
 
   def geocode_location
-    if self.location.present?
-      url = "https://maps.googleapis.com/maps/api/geocode/json?key=#{ENV['GMAP_API_KEY']}&address=#{URI.encode(self.location)}"
+    if location.present?
+      url = "https://maps.googleapis.com/maps/api/geocode/json?key=#{ENV['GMAP_API_KEY']}&address=#{URI.encode(location)}"
 
       raw_data = open(url).read
 
@@ -21,45 +21,44 @@ class Photo < ApplicationRecord
   end
   mount_uploader :image, ImageUploader
 
-  enum status: {"old"=>0, "recent"=>1} 
+  enum status: { "old" => 0, "recent" => 1 }
 
   # Direct associations
 
   has_many   :comments,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :likes,
-             :class_name => "Vote",
-             :dependent => :destroy
+             class_name: "Vote",
+             dependent: :destroy
 
   belongs_to :owner,
-             :class_name => "User",
-             :counter_cache => true
+             class_name: "User",
+             counter_cache: true
 
   # Indirect associations
 
   has_many   :fans,
-             :through => :likes,
-             :source => :user
+             through: :likes,
+             source: :user
 
   has_many   :commenters,
-             :through => :comments,
-             :source => :commenter
+             through: :comments,
+             source: :commenter
 
   has_many   :followers,
-             :through => :owner,
-             :source => :followers
+             through: :owner,
+             source: :followers
 
   # Validations
 
-  validates :image, :presence => true
+  validates :image, presence: true
 
-  validates :owner_id, :presence => true
+  validates :owner_id, presence: true
 
   # Scopes
 
   def to_s
     caption
   end
-
 end

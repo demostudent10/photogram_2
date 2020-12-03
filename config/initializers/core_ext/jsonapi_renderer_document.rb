@@ -1,5 +1,4 @@
 module JsonapiRendererDocument
-
   # Graphiti v1.2.19 uses jsonapi-render gem (v 0.2.0) to render resources as JSON
   # jsonapi-renderer-0-2-0/lib/jsonapi/renderer/document.rb has `document_hash` method
   # which has been patched here to modify format of the returned hash.
@@ -29,7 +28,6 @@ module JsonapiRendererDocument
   end
 
   def post_process(hash)
-
     return hash[:data] if hash[:included].blank?
 
     if hash[:data].respond_to?(:to_ary)
@@ -43,11 +41,9 @@ module JsonapiRendererDocument
   end
 
   def build_nested_data_hash(primary, included, include)
-
     return if include.keys.blank?
 
     include.keys.each do |include_name|
-
       data_set = Set.new
 
       if primary[:relationships][include_name][:data].respond_to?(:to_ary)
@@ -57,7 +53,7 @@ module JsonapiRendererDocument
       else
         data_set.add?(
           [primary[:relationships][include_name][:data][:type],
-           primary[:relationships][include_name][:data][:id]]
+           primary[:relationships][include_name][:data][:id]],
         )
       end
 

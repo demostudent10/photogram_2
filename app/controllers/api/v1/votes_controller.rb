@@ -13,7 +13,7 @@ class Api::V1::VotesController < Api::V1::GraphitiController
     vote = VoteResource.build(params)
 
     if vote.save
-      render jsonapi: vote, status: 201
+      render jsonapi: vote, status: :created
     else
       render jsonapi_errors: vote
     end
@@ -33,7 +33,7 @@ class Api::V1::VotesController < Api::V1::GraphitiController
     vote = VoteResource.find(params)
 
     if vote.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: vote
     end

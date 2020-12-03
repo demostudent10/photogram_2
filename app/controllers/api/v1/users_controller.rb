@@ -10,12 +10,11 @@ class Api::V1::UsersController < Api::V1::GraphitiController
     respond_with(user)
   end
 
-
   def create
     user = UserResource.build(params)
 
     if user.save
-      render jsonapi: user, status: 201
+      render jsonapi: user, status: :created
     else
       render jsonapi_errors: user
     end
@@ -35,7 +34,7 @@ class Api::V1::UsersController < Api::V1::GraphitiController
     user = UserResource.find(params)
 
     if user.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: user
     end
