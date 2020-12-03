@@ -5,6 +5,8 @@ class FriendRequest < ApplicationRecord
 
   # Validations
 
+  validates :status, :inclusion => { :in => [ "pending", "accepted", "declined" ]  }
+
   # Scopes
 
   def to_s
