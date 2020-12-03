@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Commented Photos
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @user.commented_photos.each do |photo| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <a href="/photos/<%= photo.id %>">
+          <%= photo.caption %>
+        </a>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+  </ul>
+</div>

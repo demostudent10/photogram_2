@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Received Friend Requests
+
+    <a data-toggle="collapse" href="#user_received_friend_requests_new_form">
+      Add friend request
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @user.received_friend_requests.each do |friend_request| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to friend_request.to_s, friend_request_path(friend_request) %>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="user_received_friend_requests_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Photos
+
+    <a data-toggle="collapse" href="#user_photos_new_form">
+      Add photo
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @user.photos.each do |photo| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to photo.to_s, photo_path(photo) %>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="user_photos_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
