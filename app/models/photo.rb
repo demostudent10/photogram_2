@@ -7,6 +7,8 @@ class Photo < ApplicationRecord
 
   # Validations
 
+  validates :owner_id, :presence => true
+
   # Scopes
 
   def to_s
