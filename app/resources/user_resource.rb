@@ -35,4 +35,18 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :timeline, resource: PhotoResource do
+    assign_each do |user, photos|
+      photos.select do |p|
+        p.id.in?(user.timeline.map(&:id))
+      end
+    end
+  end
+
+
+  filter :owner_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:timeline).where(:photos => {:owner_id => value})
+    end
+  end
 end
