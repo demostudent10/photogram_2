@@ -5,7 +5,8 @@ class VotesController < ApplicationController
 
   # GET /votes
   def index
-    @votes = current_user.likes.page(params[:page]).per(10)
+    @q = current_user.likes.ransack(params[:q])
+    @votes = @q.result(:distinct => true).includes(:user, :photo).page(params[:page]).per(10)
   end
 
   # GET /votes/1
