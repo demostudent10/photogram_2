@@ -12,7 +12,9 @@
 
       <dt>Avatar</dt>
       <!-- Display avatar start -->
-      <dd><%= user.avatar %></dd>
+      <dd>
+        <%= cl_image_tag @user.avatar, class: "img-fluid" %>
+      </dd>
       <!-- Display avatar end -->
 
       <dt>First name</dt>

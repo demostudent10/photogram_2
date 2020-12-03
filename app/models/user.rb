@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+
   # Direct associations
 
   has_many   :accepted_friend_requests,
