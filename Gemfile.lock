@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/firstdraft/ideas_generators.git
+  revision: a9e89d8d7eeeb96265ba0d9da228f68be1b00615
+  specs:
+    ideas_generators (0.1.0)
+      railties
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -233,6 +240,7 @@ DEPENDENCIES
   byebug
   coffee-rails
   devise (~> 4.7.2)
+  ideas_generators!
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
