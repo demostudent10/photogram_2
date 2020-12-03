@@ -20,6 +20,9 @@ class PhotoResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :commenters,
+               resource: UserResource
+
   has_many :followers, resource: UserResource, primary_key: :owner_id do
     assign_each do |photo, users|
       users.select do |u|

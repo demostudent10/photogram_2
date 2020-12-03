@@ -35,6 +35,9 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :commented_photos,
+               resource: PhotoResource
+
   has_many :timeline, resource: PhotoResource do
     assign_each do |user, photos|
       photos.select do |p|
