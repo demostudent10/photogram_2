@@ -65,3 +65,4 @@ end
 group :test do
   gem 'database_cleaner'
 end
+gem 'doorkeeper', '~> 5.4.0'
