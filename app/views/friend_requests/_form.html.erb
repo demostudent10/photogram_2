@@ -1,0 +1,83 @@
+<% was_validated = friend_request.errors.any? %>
+
+<%= form_with(model: friend_request, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for sender_id start -->
+  <div class="form-group">
+    <% sender_class = "form-control" %>
+    <% sender_was_invalid = friend_request.errors.include?(:sender) %>
+
+    <% if was_validated %>
+      <% if sender_was_invalid %>
+        <% sender_class << " is-invalid" %>
+      <% else %>
+        <% sender_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :sender_id %>
+    <!-- Input for sender_id start -->
+    <%= f.number_field :sender_id, class: sender_class, placeholder: "Enter sender" %>
+    <!-- Input for sender_id end -->
+    <% if sender_was_invalid %>
+      <% friend_request.errors.full_messages_for(:sender).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for sender_id end -->
+  <!-- Label and input for recipient_id start -->
+  <div class="form-group">
+    <% recipient_class = "form-control" %>
+    <% recipient_was_invalid = friend_request.errors.include?(:recipient) %>
+
+    <% if was_validated %>
+      <% if recipient_was_invalid %>
+        <% recipient_class << " is-invalid" %>
+      <% else %>
+        <% recipient_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :recipient_id %>
+    <!-- Input for recipient_id start -->
+    <%= f.number_field :recipient_id, class: recipient_class, placeholder: "Enter recipient" %>
+    <!-- Input for recipient_id end -->
+    <% if recipient_was_invalid %>
+      <% friend_request.errors.full_messages_for(:recipient).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for recipient_id end -->
+  <!-- Label and input for status start -->
+  <div class="form-group">
+    <% status_class = "form-control" %>
+    <% status_was_invalid = friend_request.errors.include?(:status) %>
+
+    <% if was_validated %>
+      <% if status_was_invalid %>
+        <% status_class << " is-invalid" %>
+      <% else %>
+        <% status_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :status %>
+    <!-- Input for status start -->
+    <%= f.text_field :status, class: status_class, placeholder: "Enter status" %>
+    <!-- Input for status end -->
+    <% if status_was_invalid %>
+      <% friend_request.errors.full_messages_for(:status).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for status end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
