@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label :photo_id %>
     <!-- Input for photo_id start -->
-    <%= f.text_field :photo_id, class: "form-control" %>
+    <%= f.select :photo_id, options_from_collection_for_select(Photo.all, :id, :to_s, @comment.photo_id), {}, class: "form-control" %>
     <!-- Input for photo_id end -->
   </div>
   <!-- Label and input for photo_id end -->
