@@ -29,16 +29,20 @@
 
       <!-- Edit link friend_request start -->
       <div class="col">
-        <%= link_to edit_friend_request_url(friend_request), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @friend_request.sender %>
+          <%= link_to edit_friend_request_url(friend_request), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Edit link friend_request end -->
 
       <!-- Delete link friend_request start -->
       <div class="col">
-        <%= link_to friend_request, method: :delete, data: { confirm: "Do you really want to delete this friend_request?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @friend_request.sender %>
+          <%= link_to friend_request, method: :delete, data: { confirm: "Do you really want to delete this friend_request?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
       <!-- Delete link friend_request end -->

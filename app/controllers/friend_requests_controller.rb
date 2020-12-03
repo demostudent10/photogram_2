@@ -1,4 +1,6 @@
 class FriendRequestsController < ApplicationController
+  before_action :current_user_must_be_friend_request_sender, only: [:edit, :update, :destroy] 
+
   before_action :set_friend_request, only: [:show, :edit, :update, :destroy]
 
   # GET /friend_requests
@@ -57,6 +59,14 @@ class FriendRequestsController < ApplicationController
 
 
   private
+
+  def current_user_must_be_friend_request_sender
+    set_friend_request
+    unless current_user == @friend_request.sender
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_friend_request
       @friend_request = FriendRequest.find(params[:id])
