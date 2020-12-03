@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
 
   # GET /photos
   def index
-    @photos = Photo.all
+    @photos = current_user.photos.page(params[:page]).per(10)
   end
 
   # GET /photos/1
