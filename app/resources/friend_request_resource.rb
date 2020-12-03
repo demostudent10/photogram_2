@@ -8,6 +8,10 @@ class FriendRequestResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :accepted_recipient,
+             resource: UserResource,
+             foreign_key: :recipient_id
+
   belongs_to :recipient,
              resource: UserResource
 
