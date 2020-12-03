@@ -1,6 +1,10 @@
 class FriendRequest < ApplicationRecord
   # Direct associations
 
+  belongs_to :accepted_recipient,
+             :class_name => "User",
+             :foreign_key => "recipient_id"
+
   belongs_to :recipient,
              :class_name => "User",
              :counter_cache => :received_friend_requests_count
