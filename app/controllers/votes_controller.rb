@@ -24,7 +24,12 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
 
     if @vote.save
-      redirect_to @vote, notice: 'Vote was successfully created.'
+      message = 'Vote was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @vote, notice: message
+      end
     else
       render :new
     end

@@ -24,7 +24,12 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.new(friend_request_params)
 
     if @friend_request.save
-      redirect_to @friend_request, notice: 'Friend request was successfully created.'
+      message = 'FriendRequest was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @friend_request, notice: message
+      end
     else
       render :new
     end
